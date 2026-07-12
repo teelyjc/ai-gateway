@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: ai-gateway
+data:
+  NEXT_PUBLIC_APP_URL: "https://ai-portal.teelyjc.dev"
+  AUTH_URL: "https://ai-portal.teelyjc.dev"
+  AUTH_TRUST_HOST: "true"
+  AUTHENTIK_ADMIN_GROUP: "ai-gateway-admins"
+  # LiteLLM proxy is assumed to be deployed in the same cluster;
+  # adjust to your actual service name / namespace.
+  LITELLM_PROXY_URL: "http://litellm.ai-gateway.svc.cluster.local:4000"
+  LITELLM_PROXY_INTERNAL_URL: "http://litellm.ai-gateway.svc.cluster.local:4000"
+  DATABASE_URL: "postgresql://postgres:postgres@postgres.default.svc.cluster.local:5432/litellm"

@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ai-gateway-ingress
+  namespace: ai-gateway
+  annotations:
+    # HAProxy Kubernetes Ingress Controller
+    haproxy.org/ssl-redirect: "true"
+    # Max request body size is configured globally on the controller via the
+    # ConfigMap key `request-body-size-limit` (no per-ingress annotation).
+    # Uncomment to auto-issue a certificate with cert-manager (requires a
+    # ClusterIssuer named "letsencrypt-prod"):
+    # cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  ingressClassName: haproxy
+  tls:
+    - hosts:
+        - ai-portal.teelyjc.dev
+      secretName: ai-portal-tls
+  rules:
+    - host: ai-portal.teelyjc.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ai-gateway-app
+                port:
+                  number: 3000

@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-accent: #111111;
+  --color-accent-foreground: #ffffff;
+  --color-border: rgb(228 228 231);
+  --color-background: rgb(255 255 255);
+  --color-foreground: rgb(17 17 17);
+  --color-muted: rgb(244 244 245);
+  --color-muted-foreground: rgb(113 113 122);
+
+  --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
+
+  --font-sans: var(--font-kanit), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: rgb(255 255 255);
+  color: rgb(17 17 17);
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
